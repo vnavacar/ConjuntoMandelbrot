@@ -226,7 +226,7 @@ public class Mandelbrot extends javax.swing.JFrame {
     double y2 = -1;
     
     
-    private void pintaMandelbrot() {
+    /*private void pintaMandelbrot() {
         Graphics g = panel.getGraphics();
         double x=0, y=0;
         int w = panel.getWidth();
@@ -243,6 +243,35 @@ public class Mandelbrot extends javax.swing.JFrame {
                 g.setColor(Color.getHSBColor((velocidad)/(float)160, 1, 1));
                 g.drawRect(i, j, 1, 1);
             }
+        }
+    }*/
+    private void pintaMandelbrot(){
+        Graphics g = panel.getGraphics();
+        double x=0, y=0;
+        
+        int h = panel.getHeight();
+        
+
+            for(int j=0; j<panel.getHeight(); j++){
+                
+                pintarLineaMandelbrot(j);
+            }
+
+    }
+    private void pintarLineaMandelbrot(int linea){
+        Graphics g = panel.getGraphics();
+        double x=0, y=0;
+        int w = panel.getWidth();
+        int h = linea;
+        
+        for(int i=0; i<panel.getWidth(); i++){
+            x =  i * (x2 - x1)/w + x1;
+            y = y1 - linea * (y1 - y2)/h;
+                
+            int velocidad = mandelbrot(x, y);
+                
+            g.setColor(Color.getHSBColor((velocidad)/(float)160, 1, 1));
+            g.drawRect(i, linea, 1, 1);
         }
     }
 }
